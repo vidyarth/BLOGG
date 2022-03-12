@@ -1,0 +1,25 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <br>
+    <br>
+    <h1>Posts</h1>
+    <hr>
+    <ul>
+    {% for i in object_list %}
+        <li><a href="{% url 'article' pk=i.pk %}">{{i.title}}</a> - {{i.author}} 
+            {% if user.id == i.author.id %}
+                <a href="{% url 'update' pk=i.pk %}">(edit)</a>
+                <a href="{% url 'delete' pk=i.pk %}" style="color:red">(delete)</a>
+            {% endif %}
+        <br>
+        {{i.body|slice:":40"}} .... </li>
+    {% endfor %}
+    </ul>
+    <br>
+    {% if user.is_authenticated %}
+        <a href="{% url 'add'  %}" class="btn btn-primary" style="margin-left: 2%;">Add post</a> <br>
+    {% endif %}
+{% endblock %}
+

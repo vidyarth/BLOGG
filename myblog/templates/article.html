@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+    <h1>{{post.title}} &nbsp;
+        {% if user.id == post.author.id %}
+        <a href="{% url 'update' post.pk %}" class="btn btn-primary">EDIT</a> 
+        {% endif %}
+    <br></h1>
+    
+    <small>By: {{post.author}}</small>
+    
+    <hr>
+    <br>
+    <p>{{post.body}}</p>
+    <br>
+    <br>
+    <a href="{% url 'home'  %}" class="btn btn-primary">back</a> <br>
+
+{% endblock %}

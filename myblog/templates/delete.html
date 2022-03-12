@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<h1>Delete {{post.title}}</h1>
+{% if user.id == post.author.id %}
+    <div class="mb-3">
+        <form method="post">
+            {% csrf_token %}
+            <br>
+            <br>
+            <h1 style="color: red; font-weight: bolder;">Are you sure !? &nbsp; <button class="btn btn-primary" style="font-weight: bold;background-color: orangered; border: none;" href="{% url 'home' %}">DELETE</button> </h1>
+        </form>
+    </div>
+{% else %}
+    <h1 style="color: red;">Page Restricted !</h1>
+{% endif %}
+
+{% endblock %}

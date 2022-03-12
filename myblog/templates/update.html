@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<h1>Update Post</h1>
+{% if user.id == post.author.id %}
+    <div class="mb-3">
+        <form method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button class="btn btn-primary" href="{% url 'home' %}">UPDATE</button>
+        </form>
+    </div>
+{% else %}
+    <h1 style="color: red;">Page restricted !</h1>
+{% endif %}
+{% endblock %}
